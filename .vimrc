@@ -4,13 +4,24 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 " formater install required: like astyle, js-beautify
 Plugin 'Chiel92/vim-autoformat' 
 call vundle#end()            
+
+" YCM config
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_invoke_completion = '<C-J>'
+let g:ycm_error_symbol = 'e>'
+let g:ycm_warning_symbol = 'w>'
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+highlight YcmWarningSection ctermbg=yellow
+highlight YcmWarningSign ctermbg=yellow
 
 " vim-autoformat config
 noremap <F3> :Autoformat<CR>
@@ -87,6 +98,7 @@ set pastetoggle=<F9>
 let g:copymode=0
 nnoremap <F5> :w<CR>:!./%<CR>
 nnoremap <F8> :call ToggleCopyMode()<CR>
+nnoremap <F9> :w<CR>:!pbcopy < ./%<CR>
 
 function ToggleCopyMode()
     if g:copymode
