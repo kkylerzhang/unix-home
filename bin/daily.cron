@@ -1,0 +1,6 @@
+SHELL=/usr/local/bin/bash
+MAILTO=harttle
+
+0 0 * * *       $HOME/bin/nasa-pic-of-day.sh >> /tmp/harttle-cron 2>&1
+0 0 * * *       $HOME/bin/ngeo-photo-of-day.sh >> /tmp/harttle-cron 2>&1
+
