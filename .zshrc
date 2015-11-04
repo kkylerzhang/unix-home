@@ -101,3 +101,5 @@ export GIT_EDITOR="vim"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+alias tmuxa='tmux attach -t'
+alias tmuxn='tmux new-session -s'
