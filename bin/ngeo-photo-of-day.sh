@@ -1,6 +1,10 @@
 #!/usr/local/bin/bash
 PATH=/usr/local/bin:$PATH
 
+echo ----------------------------------------------------------------
+echo 'Fetching NationalGeo photo of the day...'
+date
+
 wget -O /tmp/ngeo http://photography.nationalgeographic.com/photography/photo-of-the-day
 href=http:`cat /tmp/ngeo | grep 990 | grep 742 | awk -F '"' '{print $2}'`
 ext=${href##*.}

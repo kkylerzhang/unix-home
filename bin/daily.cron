@@ -2,5 +2,6 @@ SHELL=/usr/local/bin/bash
 MAILTO=harttle
 
 30 6 * * *       $HOME/bin/nasa-pic-of-day.sh >> /var/harttle/cron 2>&1
-30 6 * * *       $HOME/bin/ngeo-photo-of-day.sh >> /var/harttle/cron 2>&1
+40 6 * * *       $HOME/bin/ngeo-photo-of-day.sh >> /var/harttle/cron 2>&1
+50 6 * * *       $HOME/bin/harttle.com.push.sh >> /var/harttle/cron 2>&1
 

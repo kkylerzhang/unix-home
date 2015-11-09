@@ -97,9 +97,9 @@ alias la='ls -a'
 export EDITOR="vim"
 export GIT_EDITOR="vim"
 
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
+# tmux
 alias tmuxa='tmux attach -t'
 alias tmuxn='tmux new-session -s'
+
+# ack
+alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib'} --ignore-file=is:site.css"
