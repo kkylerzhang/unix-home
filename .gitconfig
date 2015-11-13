@@ -1,14 +1,5 @@
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
 [user]
-	name = harttle
 	email = yangjvn@126.com
+	name = harttle
 [push]
-	default = simple
-[core]
-	editor = vim
-	preloadindex = true
-	fscache = true
-[gc]
-	auto = 256
+	default = matching

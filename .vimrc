@@ -48,6 +48,7 @@ let g:user_emmet_settings = {
 " nerdcommenter config
 " _ is register to / within vim
 nmap <C-_> <leader>c<Space>
+nnoremap <leader>ff :NERDTreeFind<CR>
 
 " loremipsum config
 inoremap Lorem <Esc><Esc>:Loremipsum 20<CR>
@@ -175,4 +176,4 @@ nnoremap <F5> :w<CR>:!./%<CR>
 " MacOS
 autocmd filetype crontab setlocal nobackup nowritebackup
 set clipboard=unnamed
-
+nnoremap <leader>rr :source ~/.vimrc<CR>
