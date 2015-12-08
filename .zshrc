@@ -102,4 +102,4 @@ alias tmuxa='tmux attach -t'
 alias tmuxn='tmux new-session -s'
 
 # ack
-alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib'} --ignore-file=is:site.css"
+alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib','_site','.sass-cache'} --ignore-file=is:site.css"
