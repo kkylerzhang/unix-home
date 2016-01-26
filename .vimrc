@@ -24,7 +24,8 @@ Plugin 'tmhedberg/SimpylFold'       " less folds with indention
 Plugin 'scrooloose/nerdtree'        " file browser
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'kien/ctrlp.vim'             " super searching
+Plugin 'kien/ctrlp.vim'             " filename searching
+Plugin 'mileszs/ack.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " status bar
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-liquid'
@@ -94,13 +95,18 @@ set term=xterm-256color
 set termencoding=utf-8
 
 " ctrlp config
-let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site    
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$'}
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-t>', '<cr>'],
     \ 'AcceptSelection("e")': ['<c-o>', '<2-LeftMouse>'],    
     \ }
+
+" ack/ag
+if executable('ag')
+    let g:ackprg = 'ag --nogroup --nocolor --column --ignore=lib'
+endif
 
 " ycm config
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -153,7 +159,7 @@ set clipboard=unnamed
 " Misc
 set ru nu sm hls wrap wildmenu hidden
 
-" Keymap
+" Keymaps
 noremap <leader>rc :ClearAllCtrlPCaches<CR>
 nnoremap <leader>rv :source ~/.vimrc<CR>
 nnoremap <F4> :w<CR>:!make<CR>
@@ -166,9 +172,10 @@ noremap  <leader>q <Esc>:q<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
 " file navigate
-imap <C-P> <Esc><C-P>
-nnoremap <leader>ff :NERDTreeFind<CR>
-map      <leader>nd :NERDTreeToggle<CR>
+imap <c-p> <esc><c-p>
+noremap <c-u> :Ack<space>
+" nnoremap <leader>ff :NERDTreeFind<CR>
+" map      <leader>nd :NERDTreeToggle<CR>
 " edit
 nmap <C-_> <leader>c<Space>
 vmap <C-_> <leader>c<Space>
@@ -185,9 +192,9 @@ noremap <C-L> <Esc>:tabnext<CR>
 inoremap <C-L> <Esc>:tabnext<CR>
 noremap <C-H> <Esc>:tabprevious<CR>
 inoremap <C-H> <Esc>:tabprevious<CR>
-" buffer
-noremap <C-J> <Esc>:bn<CR>
-inoremap <C-J> <Esc>:bn<CR>
-noremap <C-K> <Esc>:bp<CR>
-inoremap <C-K> <Esc>:bp<CR>
+" window
+map <C-J> <Esc><c-w>j
+imap <C-J> <Esc><c-w>j
+map <C-K> <Esc><c-w>k
+imap <C-K> <Esc><c-w>k
 

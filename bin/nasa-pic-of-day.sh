@@ -14,3 +14,4 @@ file=/Users/harttle/Pictures/nasa/`date +"%Y-%m-%d"`.$ext
 echo downloading $href ...
 wget -O $file $href
 
+echo $href | mail -v -s "NASA Picture of the Day" yangjvn@126.com 
