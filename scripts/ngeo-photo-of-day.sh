@@ -13,5 +13,5 @@ file=/Users/harttle/Pictures/ngeo/`date +"%Y-%m-%d"`.$ext
 echo downloading $href ...
 wget -O $file $href
 
-echo $href | mail -v -s "NGEO Photo of the Day" yangjvn@126.com huozhuojun91@163.com
+# echo $href | mail -v -s "NGEO Photo of the Day" yangjvn@126.com huozhuojun91@163.com
 
