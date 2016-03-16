@@ -1,8 +1,7 @@
 #!/usr/local/bin/bash
 PATH=/usr/local/bin:$PATH
 
-echo ----------------------------------------------------------------
-echo 'Fetching NASA picture of the day...'
+echo '[harttle] Fetching NASA picture of the day...'
 date
 
 base='http://apod.nasa.gov/apod/'
@@ -11,7 +10,7 @@ href=${base}`cat /tmp/nasa | grep -i '<img' | awk -F '"' '{print $2}'`
 ext=${href##*.}
 file=/Users/harttle/Pictures/nasa/`date +"%Y-%m-%d"`.$ext
 
-echo downloading $href ...
+echo "[harttle] downloading $href ..."
 wget -O $file $href
 
 # echo $href | mail -v -s "NASA Picture of the Day" yangjvn@126.com 

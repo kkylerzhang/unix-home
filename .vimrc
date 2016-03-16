@@ -7,29 +7,44 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'          " vim bundle manager: :PluginInstall
+
+" input plugins
 Plugin 'Valloric/YouCompleteMe'     " completer: C-<Space>
 Plugin 'scrooloose/nerdcommenter'   " commenter: \cc \cu
 Plugin 'Chiel92/vim-autoformat'     " autoformat: F3
 Plugin 'Raimondi/delimitMate'       " delemiters
-Plugin 'mattn/emmet-vim'            " html: C-y,
 Plugin 'vim-scripts/loremipsum'     " Lorem:
-Plugin 'plasticboy/vim-markdown'    " markdown: :Toc
-Plugin 'godlygeek/tabular'          " gfm
-Plugin 'hail2u/vim-css3-syntax'     
-Plugin 'groenewege/vim-less'
-Plugin 'pangloss/vim-javascript'
-"Plugin 'marijnh/tern_for_vim'       " Javascript semantic for omnifunc, too slow...
-Plugin 'scrooloose/syntastic'       " Linting hook, external tools required, such as npm jshint
-Plugin 'tmhedberg/SimpylFold'       " less folds with indention
-Plugin 'scrooloose/nerdtree'        " file browser
-"Bundle 'jistr/vim-nerdtree-tabs'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'kien/ctrlp.vim'             " filename searching
-Plugin 'mileszs/ack.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " status bar
+
+" html plugins
+Plugin 'mattn/emmet-vim'            " html: C-y,
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-liquid'
+
+" md plugins
+Plugin 'godlygeek/tabular'          " gfm
+Plugin 'plasticboy/vim-markdown'    " markdown: :Toc
+
+" css plugins
+Plugin 'hail2u/vim-css3-syntax'     
+Plugin 'groenewege/vim-less'
 Plugin 'cakebaker/scss-syntax.vim'
+
+" js plugins
+Plugin 'pangloss/vim-javascript'
+"Plugin 'marijnh/tern_for_vim'       " Javascript semantic omnifunc, too slow...
+Plugin 'scrooloose/syntastic'       " Linting, external tools required(jshint)
+
+" layout plugins
+Plugin 'tmhedberg/SimpylFold'       " less folds with indention
+Plugin 'scrooloose/nerdtree'
+"Bundle 'jistr/vim-nerdtree-tabs'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " status bar
+
+" search plugins
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()            
 
 " syntastic config
@@ -41,6 +56,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 
 " vim-javascript config
 let javascript_enable_domhtmlcss = 1
@@ -99,8 +115,8 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$'}
 let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("t")': ['<c-t>', '<cr>'],
-    \ 'AcceptSelection("e")': ['<c-o>', '<2-LeftMouse>'],    
+    \ 'AcceptSelection("t")': ['<c-t>', '<2-LeftMouse>'],
+    \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],    
     \ }
 
 " ack/ag
