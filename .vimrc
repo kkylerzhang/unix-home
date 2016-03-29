@@ -1,6 +1,10 @@
 let mapleader=';'
 set autoindent expandtab
 
+" directory specific config
+set exrc
+set secure
+
 " vundle setup
 set nocp                      " be iMproved, required
 filetype off                  " required
@@ -57,6 +61,9 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
+let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let g:syntastic_less_lessc_quiet_messages = {
+    \ "regex": "properties must be inside selector blocks" }
 
 " vim-javascript config
 let javascript_enable_domhtmlcss = 1
@@ -187,6 +194,10 @@ noremap  <leader>q <Esc>:q<CR>
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
+noremap <leader>ej :lnext<CR>
+noremap <leader>ek :lprev<CR>
+inoremap <leader>ej <esc>:lnext<cr>
+inoremap <leader>ek <esc>:lprev<cr>
 " file navigate
 imap <c-p> <esc><c-p>
 noremap <c-u> :Ack<space>

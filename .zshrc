@@ -81,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # gnu coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:$PATH"
+PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2013/bin/x86_64-darwin/:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 TMPDIR="/tmp"
 
@@ -103,3 +103,5 @@ alias tmuxn='tmux new-session -s'
 
 # ack
 alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib','_site','.sass-cache'} --ignore-file=is:site.css"
+
+eval $(docker-machine env default)

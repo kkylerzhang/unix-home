@@ -1,0 +1,9 @@
+**.min.css
+**.css.map
+**.js.map
+**.swp
+**.min.js
+
+lib/
+public/
+assets/
