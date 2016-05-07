@@ -104,4 +104,4 @@ alias tmuxn='tmux new-session -s'
 # ack
 alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib','_site','.sass-cache'} --ignore-file=is:site.css"
 
-eval $(docker-machine env default)
+#eval $(docker-machine env default)

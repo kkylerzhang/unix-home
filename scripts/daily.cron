@@ -1,5 +1,0 @@
-SHELL=/usr/local/bin/bash
-MAILTO=harttle
-
-00 13 * * *       $HOME/scripts/daily.sh >> /var/log/cron.log 2>&1
-

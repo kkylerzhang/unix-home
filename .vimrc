@@ -1,6 +1,3 @@
-let mapleader=';'
-set autoindent expandtab
-
 " directory specific config
 set exrc
 set secure
@@ -16,7 +13,7 @@ Plugin 'gmarik/Vundle.vim'          " vim bundle manager: :PluginInstall
 Plugin 'Valloric/YouCompleteMe'     " completer: C-<Space>
 Plugin 'scrooloose/nerdcommenter'   " commenter: \cc \cu
 Plugin 'Chiel92/vim-autoformat'     " autoformat: F3
-Plugin 'Raimondi/delimitMate'       " delemiters
+Plugin 'Raimondi/delimitMate'       " delimiters
 Plugin 'vim-scripts/loremipsum'     " Lorem:
 
 " html plugins
@@ -40,9 +37,6 @@ Plugin 'scrooloose/syntastic'       " Linting, external tools required(jshint)
 
 " layout plugins
 Plugin 'tmhedberg/SimpylFold'       " less folds with indention
-Plugin 'scrooloose/nerdtree'
-"Bundle 'jistr/vim-nerdtree-tabs'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " status bar
 
 " search plugins
@@ -50,6 +44,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 
 call vundle#end()            
+
+" after plugin loading
+let mapleader=';'
+set autoindent expandtab
+filetype plugin indent on
+syntax on
 
 " syntastic config
 " jshint configable in ~/.jshintrc
@@ -68,7 +68,6 @@ let g:syntastic_less_lessc_quiet_messages = {
 " vim-javascript config
 let javascript_enable_domhtmlcss = 1
 
-" emmet config
 let g:user_emmet_settings = {
   \  'hbs' : {
   \    'extends' : 'html',
@@ -81,32 +80,9 @@ let g:user_emmet_settings = {
   \  },
   \}
 
-" nerdcommenter config
-
-" loremipsum config
-
-" nerdtree config
-" map <C-n> :NERDTreeTabsToggle<CR>
-" open tree when no file speced
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" auto close
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules'] "ignore files in NERDTree
-let NERDTreeMinimalUI=1
-
-" nerdtree-git-plugin config
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "+",
-    \ "Untracked" : "x",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "-",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+" md config
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_math = 1
 
 " powerline config
 let g:Powerline_symbols = 'fancy'
@@ -148,11 +124,15 @@ let g:formatters_cpp = ['astyle']
 let g:formatters_java = ['astyle']
 noremap <F3> :Autoformat<CR>
 
-" simpleFold config
+" delimitmate config
+let delimitMate_expand_cr = 1
+let delimitMate_matchpairs = "(:),[:],{:},<:>,『:』,「:」,《:》,（:）,【:】"
+au FileType markdown let b:delimitMate_quotes = "\" ' `"
+au FileType markdown let b:delimitMate_nesting_quotes = ['`']
+
+" simplefold config
 let g:SimpylFold_docstring_preview=1
 set foldmethod=indent foldlevel=99
-"au BufWinLeave *.* silent mkview
-"au BufRead *.* silent loadview
 
 " Tab related
 set ts=4 sw=4 smarttab et ambiwidth=double
@@ -162,18 +142,18 @@ set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
 set mouse=a mousemodel=popup selection=inclusive
 set pastetoggle=<F9>
+hi MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
+
+" searching
+" case-insensitive search
+set ignorecase
+" switch to case-sensitive if any capital
+set smartcase 
 
 " Encoding related
 set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-
-" File type related
-let delimitMate_expand_cr = 1
-filetype plugin indent on
-autocmd filetype html imap <c-_> <c-y>/
-autocmd filetype html map <c-_> <c-y>/
-syntax on
 
 " MacOS
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -188,7 +168,13 @@ nnoremap <leader>rv :source ~/.vimrc<CR>
 nnoremap <F4> :w<CR>:!make<CR>
 nnoremap <F5> :w<CR>:!./%<CR>
 " file save
-inoremap ;; <Esc>:w<CR>
+inoremap <leader>w <Esc>:w<CR>
+inoremap <leader><space> <Esc>
+inoremap <leader>a <Esc>A
+inoremap <leader>O <Esc>O
+inoremap <leader>o <Esc>o
+inoremap <leader>j <Esc>j
+inoremap <leader>k <Esc>k
 noremap  <leader>x <Esc>:x<CR>
 noremap  <leader>q <Esc>:q<CR>
 " code navigate
@@ -198,11 +184,9 @@ noremap <leader>ej :lnext<CR>
 noremap <leader>ek :lprev<CR>
 inoremap <leader>ej <esc>:lnext<cr>
 inoremap <leader>ek <esc>:lprev<cr>
-" file navigate
 imap <c-p> <esc><c-p>
-noremap <c-u> :Ack<space>
-" nnoremap <leader>ff :NERDTreeFind<CR>
-" map      <leader>nd :NERDTreeToggle<CR>
+nmap n nzz
+nmap <s-n> <s-n>zz
 " edit
 nmap <C-_> <leader>c<Space>
 vmap <C-_> <leader>c<Space>
@@ -212,9 +196,8 @@ inoremap Lorem <Esc>:Loremipsum 15<CR>
 inoremap Ipsum <Esc>:Loremipsum 35<CR>
 " git
 nnoremap <leader>gl :!git log -p %<CR>
+nnoremap <leader>gb :!git blame %<CR>
 " tab
-noremap <C-T> <Esc>:tabedit<space>
-inoremap <C-T> <Esc>:tabedit<space>
 noremap <C-L> <Esc>:tabnext<CR>
 inoremap <C-L> <Esc>:tabnext<CR>
 noremap <C-H> <Esc>:tabprevious<CR>
