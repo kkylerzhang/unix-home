@@ -3,3 +3,7 @@
 	name = harttle
 [push]
 	default = matching
+[http]
+	proxy = 
+[https]
+	proxy = 

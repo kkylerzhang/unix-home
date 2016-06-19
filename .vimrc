@@ -66,7 +66,7 @@ let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": "properties must be inside selector blocks" }
 
 " vim-javascript config
-let javascript_enable_domhtmlcss = 1
+let javascript_enable_domhtmlcss = 0
 
 let g:user_emmet_settings = {
   \  'hbs' : {
@@ -126,7 +126,7 @@ noremap <F3> :Autoformat<CR>
 
 " delimitmate config
 let delimitMate_expand_cr = 1
-let delimitMate_matchpairs = "(:),[:],{:},<:>,『:』,「:」,《:》,（:）,【:】"
+let delimitMate_matchpairs = "(:),[:],{:},『:』,「:」,《:》,（:）,【:】"
 au FileType markdown let b:delimitMate_quotes = "\" ' `"
 au FileType markdown let b:delimitMate_nesting_quotes = ['`']
 
@@ -168,15 +168,9 @@ nnoremap <leader>rv :source ~/.vimrc<CR>
 nnoremap <F4> :w<CR>:!make<CR>
 nnoremap <F5> :w<CR>:!./%<CR>
 " file save
-inoremap <leader>w <Esc>:w<CR>
 inoremap <leader><space> <Esc>
-inoremap <leader>a <Esc>A
-inoremap <leader>O <Esc>O
-inoremap <leader>o <Esc>o
-inoremap <leader>j <Esc>j
-inoremap <leader>k <Esc>k
-noremap  <leader>x <Esc>:x<CR>
-noremap  <leader>q <Esc>:q<CR>
+noremap <leader><leader> <Esc>:
+inoremap <leader><leader> <Esc>:
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
@@ -185,15 +179,9 @@ noremap <leader>ek :lprev<CR>
 inoremap <leader>ej <esc>:lnext<cr>
 inoremap <leader>ek <esc>:lprev<cr>
 imap <c-p> <esc><c-p>
-nmap n nzz
-nmap <s-n> <s-n>zz
 " edit
-nmap <C-_> <leader>c<Space>
-vmap <C-_> <leader>c<Space>
+map <C-_> <leader>c<Space>
 nnoremap yf :let @"=expand("%:t")<CR>
-nnoremap yp :let @"=expand("%:p")<CR>
-inoremap Lorem <Esc>:Loremipsum 15<CR>
-inoremap Ipsum <Esc>:Loremipsum 35<CR>
 " git
 nnoremap <leader>gl :!git log -p %<CR>
 nnoremap <leader>gb :!git blame %<CR>
