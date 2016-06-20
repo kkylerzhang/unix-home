@@ -142,13 +142,16 @@ set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
 set mouse=a mousemodel=popup selection=inclusive
 set pastetoggle=<F9>
-hi MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 
 " searching
 " case-insensitive search
-set ignorecase
+" set ignorecase
 " switch to case-sensitive if any capital
-set smartcase 
+" set smartcase 
+
+" color
+highlight Search ctermbg=yellow ctermfg=black 
+highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 
 " Encoding related
 set encoding=utf-8
@@ -167,10 +170,8 @@ noremap <leader>rc :ClearAllCtrlPCaches<CR>
 nnoremap <leader>rv :source ~/.vimrc<CR>
 nnoremap <F4> :w<CR>:!make<CR>
 nnoremap <F5> :w<CR>:!./%<CR>
-" file save
-inoremap <leader><space> <Esc>
+" open/close
 noremap <leader><leader> <Esc>:
-inoremap <leader><leader> <Esc>:
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
