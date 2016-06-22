@@ -2,7 +2,6 @@
 set ts=2
 set sw=2
 
-"inoremap <CR> <CR><C-o>==<C-o>O
 let delimitMate_matchpairs = delimitMate_matchpairs.",<:>"
 
 function! Expander()

@@ -127,8 +127,6 @@ noremap <F3> :Autoformat<CR>
 " delimitmate config
 let delimitMate_expand_cr = 1
 let delimitMate_matchpairs = "(:),[:],{:},『:』,「:」,《:》,（:）,【:】"
-au FileType markdown let b:delimitMate_quotes = "\" ' `"
-au FileType markdown let b:delimitMate_nesting_quotes = ['`']
 
 " simplefold config
 let g:SimpylFold_docstring_preview=1
@@ -158,12 +156,12 @@ set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
-" MacOS
-autocmd filetype crontab setlocal nobackup nowritebackup
-set clipboard=unnamed
-
 " Misc
 set ru nu sm hls wrap wildmenu hidden
+
+" Clipboard
+set clipboard=unnamed
+inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
 
 " Keymaps
 noremap <leader>rc :ClearAllCtrlPCaches<CR>
@@ -172,6 +170,7 @@ nnoremap <F4> :w<CR>:!make<CR>
 nnoremap <F5> :w<CR>:!./%<CR>
 " open/close
 noremap <leader><leader> <Esc>:
+inoremap <leader><leader> <Esc>:
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
@@ -182,7 +181,6 @@ inoremap <leader>ek <esc>:lprev<cr>
 imap <c-p> <esc><c-p>
 " edit
 map <C-_> <leader>c<Space>
-nnoremap yf :let @"=expand("%:t")<CR>
 " git
 nnoremap <leader>gl :!git log -p %<CR>
 nnoremap <leader>gb :!git blame %<CR>
