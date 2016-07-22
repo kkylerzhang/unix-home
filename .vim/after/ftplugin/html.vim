@@ -4,6 +4,9 @@ set sw=2
 
 let delimitMate_matchpairs = delimitMate_matchpairs.",<:>"
 
+noremap <F5> <Esc>:!open %<CR>
+inoremap <expr> <CR> Expander()
+
 function! Expander()
   let line   = getline(".")
   let col    = col(".")
@@ -17,4 +20,3 @@ function! Expander()
   return "\<CR>"
 endfunction
 
-inoremap <expr> <CR> Expander()

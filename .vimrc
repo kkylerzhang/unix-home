@@ -20,6 +20,7 @@ Plugin 'vim-scripts/loremipsum'     " Lorem:
 Plugin 'mattn/emmet-vim'            " html: C-y,
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-liquid'
+Plugin 'othree/xml.vim'
 
 " md plugins
 Plugin 'godlygeek/tabular'          " gfm
@@ -63,7 +64,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_less_lessc_quiet_messages = {
-    \ "regex": "properties must be inside selector blocks" }
+    \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
 
 " vim-javascript config
 let javascript_enable_domhtmlcss = 0
@@ -143,9 +144,9 @@ set pastetoggle=<F9>
 
 " searching
 " case-insensitive search
-" set ignorecase
+set ignorecase
 " switch to case-sensitive if any capital
-" set smartcase 
+set smartcase 
 
 " color
 highlight Search ctermbg=yellow ctermfg=black 
