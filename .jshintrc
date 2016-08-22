@@ -1,5 +1,11 @@
 {
+  "doc": "http://jshint.com/docs/options/",
   "esnext": 1,
   "expr": 1,
-  "boss": 1
+  "boss": 1,
+  "funcscope": 1,
+  "lastsemic": 1,
+  "laxbreak": 1,
+  "sub": 1,
+  "evil": 1
 }

@@ -2,8 +2,6 @@
 set ts=2
 set sw=2
 
-let delimitMate_matchpairs = delimitMate_matchpairs.",<:>"
-
 noremap <F5> <Esc>:!open %<CR>
 inoremap <expr> <CR> Expander()
 

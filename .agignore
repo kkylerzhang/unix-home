@@ -3,5 +3,5 @@
 **.js.map
 **.swp
 **.min.js
-
+node_modules
 lib/

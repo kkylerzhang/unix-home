@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'          " vim bundle manager: :PluginInstall
 " input plugins
 Plugin 'Valloric/YouCompleteMe'     " completer: C-<Space>
 Plugin 'scrooloose/nerdcommenter'   " commenter: \cc \cu
-Plugin 'Chiel92/vim-autoformat'     " autoformat: F3
+Plugin 'Chiel92/vim-autoformat'     " autoformat
 Plugin 'Raimondi/delimitMate'       " delimiters
 Plugin 'vim-scripts/loremipsum'     " Lorem:
 
@@ -63,6 +63,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+" suppress less warnings, since there's no config file for npm less
 let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
 
@@ -95,13 +96,21 @@ set term=xterm-256color
 set termencoding=utf-8
 
 " ctrlp config
-set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site    
+set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site,*/build/*,*/dist/*
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$'}
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$', 
+    \ 'file': '\v\.(exe|so|dll)$'}
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-t>', '<2-LeftMouse>'],
     \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],    
     \ }
+" ignore files in .gitignore, conflict with wildignore/ctrlp_custom_ignore
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" ctrln config
+set wildmenu wildmode=full 
+set wildchar=<Tab> wildcharm=<C-Z>
 
 " ack/ag
 if executable('ag')
@@ -147,9 +156,16 @@ set pastetoggle=<F9>
 set ignorecase
 " switch to case-sensitive if any capital
 set smartcase 
+" disable highlight when cursor not moving, enable when begin search
+autocmd cursorhold * set nohlsearch
+noremap n :set hlsearch<cr>n
+noremap N :set hlsearch<cr>N
+noremap / :set hlsearch<cr>/
+noremap ? :set hlsearch<cr>?
+noremap * *:set hlsearch<cr>
 
 " color
-highlight Search ctermbg=yellow ctermfg=black 
+highlight Search ctermbg=grey ctermfg=black 
 highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 
 " Encoding related
@@ -158,41 +174,26 @@ set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 " Misc
-set ru nu sm hls wrap wildmenu hidden
-
-" Clipboard
+set ru nu sm hls wrap hidden
 set clipboard=unnamed
-inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
+" Clipboard Hack
+inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP 
 
-" Keymaps
-noremap <leader>rc :ClearAllCtrlPCaches<CR>
-nnoremap <leader>rv :source ~/.vimrc<CR>
-nnoremap <F4> :w<CR>:!make<CR>
-nnoremap <F5> :w<CR>:!./%<CR>
-" open/close
-noremap <leader><leader> <Esc>:
-inoremap <leader><leader> <Esc>:
+" file navigate
+noremap <c-n> :b <c-z>
+noremap gb :bn<cr>
+noremap gB :bp<cr>
+noremap gl <c-w>l
+noremap gh <c-w>h
+noremap gj <c-w>j
+noremap gk <c-w>k
+
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
 noremap <leader>ej :lnext<CR>
 noremap <leader>ek :lprev<CR>
-inoremap <leader>ej <esc>:lnext<cr>
-inoremap <leader>ek <esc>:lprev<cr>
-imap <c-p> <esc><c-p>
-" edit
+
+" comment
 map <C-_> <leader>c<Space>
-" git
-nnoremap <leader>gl :!git log -p %<CR>
-nnoremap <leader>gb :!git blame %<CR>
-" tab
-noremap <C-L> <Esc>:tabnext<CR>
-inoremap <C-L> <Esc>:tabnext<CR>
-noremap <C-H> <Esc>:tabprevious<CR>
-inoremap <C-H> <Esc>:tabprevious<CR>
-" window
-map <C-J> <Esc><c-w>j
-imap <C-J> <Esc><c-w>j
-map <C-K> <Esc><c-w>k
-imap <C-K> <Esc><c-w>k
 
