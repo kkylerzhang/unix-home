@@ -81,13 +81,15 @@ source $ZSH/oh-my-zsh.sh
 
 
 # gnu coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2013/bin/x86_64-darwin/:$PATH"
+PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2016/bin/x86_64-darwin/:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 TMPDIR="/tmp"
 
-# gnu
+# utils
 PATH="/usr/local/bin:$PATH"
 alias g++='g++-5 -std=c++11'
+alias http='http-server -p 3000 -c-1 .'
+alias tree='tree -I node_modules'
 
 # ls
 alias ls='ls -h --color'
@@ -96,15 +98,4 @@ alias la='ls -a'
 
 export EDITOR="vim"
 export GIT_EDITOR="vim"
-
-# tmux
-alias tmuxa='tmux attach -t'
-alias tmuxn='tmux new-session -s'
-
-# ack
-alias ack="ack --ignore-dir={'.build','.idea','.tmp','node_modules','lib','_site','.sass-cache'} --ignore-file=is:site.css"
-
-#eval $(docker-machine env default)
-
-alias http='http-server -p 3000 -c-1 .'
 

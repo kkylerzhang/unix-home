@@ -7,3 +7,5 @@
 	proxy = 
 [https]
 	proxy = 
+[credential]
+	helper = osxkeychain
