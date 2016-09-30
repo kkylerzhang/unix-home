@@ -20,7 +20,6 @@ Plugin 'vim-scripts/loremipsum'     " Lorem:
 Plugin 'mattn/emmet-vim'            " html: C-y,
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-liquid'
-Plugin 'othree/xml.vim'
 
 " md plugins
 Plugin 'godlygeek/tabular'          " gfm

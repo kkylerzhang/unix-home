@@ -8,7 +8,7 @@ let b:delimitMate_nesting_quotes = ['`']
 
 " mapping
 noremap <F5> <Esc>:!open %<CR>
-inoremap <expr> <CR> Expander()
+"inoremap <expr> <CR> Expander()
 nnoremap <leader>yf :let @*=JekyllUrl()<CR>
 
 " functions
