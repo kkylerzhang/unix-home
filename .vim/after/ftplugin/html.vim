@@ -2,9 +2,22 @@
 set ts=2
 set sw=2
 
-noremap <F5> <Esc>:!open %<CR>
-inoremap <expr> <CR> Expander()
+" vim-autoformat
+let g:formatdef_htmlbeautify = '"'
+    \. ' html-beautify -f -'
+    \. ' --indent-size '.&sw
+    \. ' --preserve-newlines'
+    \. '"'
 
+EmmetInstall
+
+imap <buffer> <leader><tab> <leader>em,
+map <buffer> <leader>a <leader>emd
+
+noremap <buffer> <F5> <Esc>:!open %<CR>
+inoremap <buffer> <expr> <CR> Expander()
+
+" expand indent when Enter
 function! Expander()
   let line   = getline(".")
   let col    = col(".")

@@ -8,7 +8,15 @@
   "laxbreak": 1,
   "sub": 1,
   "evil": 1,
-   "globals": {
-     "Promise": true
-   }
+  "undef": true,
+  "unused": true,
+  "browser": true,
+  "node": true,
+  "mocha": true,
+  "globals": {
+    "define": false,
+    "expect": true,
+    "$": false,
+    "Promise": true
+  }
 }

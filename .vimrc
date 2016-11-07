@@ -50,29 +50,28 @@ Plugin 'mileszs/ack.vim'
 call vundle#end()            
 
 " after plugin loading
-let mapleader=';'
 set autoindent expandtab
 filetype plugin indent on
 syntax on
+let mapleader='\'
 
 " syntastic config
 " jshint configable in ~/.jshintrc
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
-let g:syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let g:syntastic_mode_map = { 'mode': 'passive' }
 " suppress less warnings, since there's no config file for npm less
 let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_tex_lacheck_quiet_messages = {
     \ "regex": ["possible unwanted space", "Command terminated with space"] }
-
+" when active: clear and disable
+" when passive: enable and check
+nnoremap <F4> :SyntasticToggleMode<CR>:w<CR>
 
 " vim-javascript config
 let javascript_enable_domhtmlcss = 0
@@ -88,6 +87,9 @@ let g:user_emmet_settings = {
   \    'extends' : 'html',
   \  },
   \}
+let g:user_emmet_install_global = 0
+"autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<leader>em'
 
 " tex config
 let g:vimtex_latexmk_callback = 0
@@ -95,15 +97,6 @@ let g:vimtex_latexmk_callback = 0
 " md config
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
-
-" powerline config
-"let g:Powerline_symbols = 'fancy'
-"set guifont=Inconsolata\ for\ Powerline:h15
-"set encoding=utf-8
-"set t_Co=256
-"set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
-"set termencoding=utf-8
 
 " ctrlp config
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site,*/build/*,*/dist/*
@@ -115,8 +108,6 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-t>', '<2-LeftMouse>'],
     \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],    
     \ }
-" ignore files in .gitignore, conflict with wildignore/ctrlp_custom_ignore
-" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " ctrln config
 set wildmenu wildmode=full 
@@ -128,6 +119,7 @@ if executable('ag')
 endif
 
 " ycm config
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_error_symbol = 'e>'
@@ -142,6 +134,7 @@ highlight YcmWarningSign ctermbg=yellow
 let g:formatdef_astyle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['astyle']
 let g:formatters_java = ['astyle']
+" js-beaultify for HTML/CSS/JS: ~/.jsbeautifyrc
 noremap <F3> :Autoformat<CR>
 
 " delimitmate config
@@ -186,11 +179,12 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " Misc
 set ru nu sm hls wrap hidden
 set clipboard=unnamed
+map <F6> :source $HOME/.vimrc<CR>
+
 " Clipboard Hack
 inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP 
 
 " file navigate
-noremap <c-n> :b <c-z>
 noremap gb :bn<cr>
 noremap gB :bp<cr>
 noremap gl <c-w>l
@@ -203,6 +197,15 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
 noremap <leader>ej :lnext<CR>
 noremap <leader>ek :lprev<CR>
+set relativenumber
+nnoremap <c-n> :call NumberToggle()<cr>
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
 
 " comment
 map <C-_> <leader>c<Space>

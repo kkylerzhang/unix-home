@@ -81,15 +81,15 @@ source $ZSH/oh-my-zsh.sh
 
 
 # gnu coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2016/bin/x86_64-darwin/:$PATH"
+PATH="/Users/harttle/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2016/bin/x86_64-darwin/:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 TMPDIR="/tmp"
 
 # utils
 PATH="/usr/local/bin:$PATH"
-alias g++='g++-5 -std=c++11'
-alias http='http-server -p 3000 -c-1 .'
+alias http="ifconfig | grep 'inet ' | awk '{print \$2}' && http-server -c-1 ."
 alias tree='tree -I node_modules'
+alias es6='browserify -t [ babelify --global true --presets [ es2015 ] ]'
 
 # ls
 alias ls='ls -h --color'
