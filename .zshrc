@@ -98,4 +98,3 @@ alias la='ls -a'
 
 export EDITOR="vim"
 export GIT_EDITOR="vim"
-

@@ -159,16 +159,27 @@ set pastetoggle=<F9>
 set ignorecase
 " switch to case-sensitive if any capital
 set smartcase 
+" increment searching
+set incsearch
 " disable highlight when cursor not moving, enable when begin search
-autocmd cursorhold * set nohlsearch
-noremap n :set hlsearch<cr>n
-noremap N :set hlsearch<cr>N
-noremap / :set hlsearch<cr>/
-noremap ? :set hlsearch<cr>?
-noremap * *:set hlsearch<cr>
+" autocmd cursorhold * set nohlsearch
+" noremap n :set hlsearch<cr>n
+" noremap N :set hlsearch<cr>N
+" noremap / :set hlsearch<cr>/
+" noremap ? :set hlsearch<cr>?
+" noremap * *:set hlsearch<cr>
+nnoremap <c-h> :call HighlightToggle()<cr>
+function! HighlightToggle()
+  if(&hlsearch == 1)
+    set nohlsearch
+  else
+    set hlsearch
+  endif
+endfunc
 
 " color
-highlight Search ctermbg=grey ctermfg=black 
+highlight IncSearch ctermbg=black ctermfg=yellow 
+highlight Search ctermbg=yellow ctermfg=black 
 highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 
 " Encoding related

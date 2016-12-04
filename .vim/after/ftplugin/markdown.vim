@@ -9,7 +9,6 @@ let b:delimitMate_nesting_quotes = ['`']
 " mapping
 noremap <buffer> <F5> <Esc>:!open %<CR>
 inoremap <buffer> <expr> <CR> Expander()
-nnoremap <buffer> <leader>yl :let @*=JekyllLink()<CR>
 
 " expand front matter
 function! Expander()
@@ -31,12 +30,3 @@ function! Expander()
     return "\<CR>"
 endfunction
 
-function! JekyllLink()
-    " 2016-06-22-some-thing.md
-    let file = expand("%:t")
-    let file = split(file, '\.')[0]
-    let url = '/' . file[0:3] . '/' .file[5:6] . '/' . file[8:9] . '/' . file[11:] . '.html'
-    let title = getline(2)
-    let link = '[' . title[7:] . '](' . url . ')'
-    return link
-endfunction
