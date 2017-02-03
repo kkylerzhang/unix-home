@@ -10,20 +10,28 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'          " vim bundle manager: :PluginInstall
 
 " input plugins
-Plugin 'Valloric/YouCompleteMe'     " completer: C-<Space>
-Plugin 'scrooloose/nerdcommenter'   " commenter: \cc \cu
-Plugin 'Chiel92/vim-autoformat'     " autoformat
-Plugin 'Raimondi/delimitMate'       " delimiters
-Plugin 'vim-scripts/loremipsum'     " Lorem:
+" completer: C-<Space>
+Plugin 'Valloric/YouCompleteMe'
+" commenter: \cc \cu
+Plugin 'scrooloose/nerdcommenter'
+" autoformat
+Plugin 'Chiel92/vim-autoformat'
+" delimiters
+Plugin 'Raimondi/delimitMate'
+" Lorem:
+Plugin 'vim-scripts/loremipsum'
 
 " html plugins
-Plugin 'mattn/emmet-vim'            " html: C-y,
+" html: C-y,
+Plugin 'mattn/emmet-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-liquid'
 
 " md plugins
-Plugin 'godlygeek/tabular'          " gfm
-Plugin 'plasticboy/vim-markdown'    " markdown: :Toc
+" gfm
+Plugin 'godlygeek/tabular'
+" markdown: :Toc
+Plugin 'plasticboy/vim-markdown'
 
 " tex plugins
 "Plugin 'lervag/vimtex'
@@ -36,16 +44,21 @@ Plugin 'cakebaker/scss-syntax.vim'
 
 " js plugins
 Plugin 'pangloss/vim-javascript'
-"Plugin 'marijnh/tern_for_vim'       " Javascript semantic omnifunc, too slow...
-Plugin 'scrooloose/syntastic'       " Linting, external tools required(jshint)
+" Javascript semantic omnifunc, too slow...
+"Plugin 'marijnh/tern_for_vim'
+" Linting, external tools required(jshint)
+Plugin 'scrooloose/syntastic'
 
 " layout plugins
-Plugin 'tmhedberg/SimpylFold'       " less folds with indention
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " status bar
+" less folds with indention
+Plugin 'tmhedberg/SimpylFold'
+" status bar
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " search plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()            
 
@@ -146,13 +159,14 @@ let g:SimpylFold_docstring_preview=1
 set foldmethod=indent foldlevel=99
 
 " Tab related
-set ts=4 sw=4 smarttab et ambiwidth=double
+set ts=4 sw=4 smarttab et
 
 " Editing related
 set backspace=indent,eol,start
 set whichwrap=b,s,<,>,[,]
 set mouse=a mousemodel=popup selection=inclusive
 set pastetoggle=<F9>
+set ambiwidth=single
 
 " searching
 " case-insensitive search
@@ -188,12 +202,11 @@ set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 " Misc
-set ru nu sm hls wrap hidden
-set clipboard=unnamed
-map <F6> :source $HOME/.vimrc<CR>
+set ru number sm hls wrap hidden
 
-" Clipboard Hack
-inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP 
+" Clipboard
+set clipboard=unnamed
+inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP  
 
 " file navigate
 noremap gb :bn<cr>
@@ -202,6 +215,9 @@ noremap gl <c-w>l
 noremap gh <c-w>h
 noremap gj <c-w>j
 noremap gk <c-w>k
+cabbrev help tab help
+map K :Dash<cr>
+noremap <c-d> :sh<cr>
 
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>

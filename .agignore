@@ -7,3 +7,5 @@ node_modules
 lib/
 dist/
 build/
+output/
+bower_components/

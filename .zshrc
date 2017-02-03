@@ -87,7 +87,8 @@ TMPDIR="/tmp"
 
 # utils
 PATH="/usr/local/bin:$PATH"
-alias http="ifconfig | grep 'inet ' | awk '{print \$2}' && http-server -c-1 ."
+alias https='http-server -S -c-1 -C ~/.ssh/cert.pem -K ~/.ssh/key.pem -o'
+alias http='http-server -c-1 -o'
 alias tree='tree -I node_modules'
 alias es6='browserify -t [ babelify --global true --presets [ es2015 ] ]'
 
@@ -96,5 +97,11 @@ alias ls='ls -h --color'
 alias ll='ls -l'
 alias la='ls -a'
 
+alias vi='vim'
+
 export EDITOR="vim"
 export GIT_EDITOR="vim"
+
+export NVM_DIR="/Users/harttle/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+alias webpack="webpack --progress"

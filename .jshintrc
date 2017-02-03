@@ -18,6 +18,14 @@
     "expect": true,
     "sinon": true,
     "$": false,
-    "Promise": true
+    "Promise": true,
+    "DEBUG": true,
+    "Highcharts": true,
+    "cache": true,
+    "caches": true,
+    "self": true,
+    "serviceWorkerOption": true,
+    "registration": true,
+    "Response": true
   }
 }
