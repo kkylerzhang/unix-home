@@ -50,6 +50,7 @@ plugins=(git)
 # User configuration
 
 export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="${PATH}:/opt/android-sdk/platform-tools"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -105,3 +106,4 @@ export GIT_EDITOR="vim"
 export NVM_DIR="/Users/harttle/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 alias webpack="webpack --progress"
+

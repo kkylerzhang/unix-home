@@ -82,9 +82,10 @@ let g:syntastic_less_lessc_quiet_messages = {
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_tex_lacheck_quiet_messages = {
     \ "regex": ["possible unwanted space", "Command terminated with space"] }
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "is not recognized!", "discarding unexpected"]
 " when active: clear and disable
 " when passive: enable and check
-nnoremap <F4> :SyntasticToggleMode<CR>:w<CR>
+nnoremap <F4> :SyntasticToggleMode<CR>
 
 " vim-javascript config
 let javascript_enable_domhtmlcss = 0

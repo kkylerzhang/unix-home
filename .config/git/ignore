@@ -13,3 +13,12 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# Vim
+*.swp
+*.swo
+
+# Frontend
+node_modules/
+build/
+bower_components/
