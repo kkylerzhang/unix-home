@@ -46,7 +46,6 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 " Javascript semantic omnifunc, too slow...
 "Plugin 'marijnh/tern_for_vim'
-" Linting, external tools required(jshint)
 Plugin 'scrooloose/syntastic'
 
 " layout plugins
@@ -68,17 +67,22 @@ filetype plugin indent on
 syntax on
 let mapleader='\'
 
+" nerd commenter config
+let g:NERDSpaceDelims = 1
+
 " syntastic config
-" jshint configable in ~/.jshintrc
-let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 1
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
-let g:syntastic_mode_map = { 'mode': 'passive' }
+" let g:syntastic_mode_map = { 'mode': 'passive' }
 " suppress less warnings, since there's no config file for npm less
 let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_checkers = ['jshint']
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_tex_lacheck_quiet_messages = {
     \ "regex": ["possible unwanted space", "Command terminated with space"] }
@@ -113,7 +117,7 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
 
 " ctrlp config
-set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip,_site,*/build/*,*/dist/*
+set wildignore+=*/tmp/*,*/node_modules/*,*/lib/*,*.so,*.swp,*.zip,_site,*/build/*,*/dist/*,*/vendors/*
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$', 
@@ -129,7 +133,7 @@ set wildchar=<Tab> wildcharm=<C-Z>
 
 " ack/ag
 if executable('ag')
-    let g:ackprg = 'ag --nogroup --nocolor --column --ignore=lib'
+    let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
 " ycm config
@@ -148,8 +152,11 @@ highlight YcmWarningSign ctermbg=yellow
 let g:formatdef_astyle = '"astyle --style=attach --pad-oper"'
 let g:formatters_cpp = ['astyle']
 let g:formatters_java = ['astyle']
+let g:formatters_java = ['astyle']
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint']
 " js-beaultify for HTML/CSS/JS: ~/.jsbeautifyrc
-noremap <F3> :Autoformat<CR>
+noremap <F3> :Autoformat<CR>:w<CR>
 
 " delimitmate config
 let delimitMate_expand_cr = 1
@@ -223,8 +230,6 @@ noremap <c-d> :sh<cr>
 " code navigate
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <space> za
-noremap <leader>ej :lnext<CR>
-noremap <leader>ek :lprev<CR>
 set relativenumber
 nnoremap <c-n> :call NumberToggle()<cr>
 function! NumberToggle()

@@ -1,0 +1,52 @@
+# init
+new-session -s servers -c /tmp 'redis-server; read'
+split-window -h 'mongod; read'
+split-window -v "polipo socksParentProxy=localhost:1086; read"
+
+new-session -s blog -c ~/src/harttle.com
+split-window -h
+send-keys -t blog.1 ./bin/serve.sh Enter
+select-pane -L
+
+new-session -s html -c ~/src/html
+split-window -h
+send-keys -t html.1 make Space serve Enter
+select-pane -L
+
+new-session -s superframe -c ~/src/superframe
+split-window -h
+
+new-session -s shopify-liquid -c ~/src/shopify-liquid
+split-window -h
+
+new-session -s mip -c ~/src/mip
+split-window -h
+
+new-session -s mip-validator -c ~/src/mip-validator
+split-window -h
+
+new-session -s weather -c ~/src/weather
+split-window -h
+
+new-session -s pm25 -c ~/src/pm25-node
+split-window -h
+
+new-session -s mip-tools -c ~/src/mip-tools
+split-window -h
+
+new-session -s brick -c ~/src/brick.js
+split-window -h
+
+new-session -s xhb -c ~/src/xiehuibao
+split-window -h
+split-window -v
+send-keys -t xhb.1 gulp Enter
+
+new-session -s leetcode -c ~/src/leetcode
+split-window -h
+
+new-session -s dev -c ~/tmp
+split-window -h
+
+new-session -s tmp -c ~/tmp
+split-window -h

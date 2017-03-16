@@ -4,7 +4,6 @@
 **.swp
 **.min.js
 node_modules
-lib/
 dist/
 build/
 output/

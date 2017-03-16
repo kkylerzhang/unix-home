@@ -51,6 +51,8 @@ plugins=(git)
 
 export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 export PATH="${PATH}:/opt/android-sdk/platform-tools"
+export PATH="./node_modules/.bin:${PATH}"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -90,7 +92,7 @@ TMPDIR="/tmp"
 PATH="/usr/local/bin:$PATH"
 alias https='http-server -S -c-1 -C ~/.ssh/cert.pem -K ~/.ssh/key.pem -o'
 alias http='http-server -c-1 -o'
-alias tree='tree -I node_modules'
+alias tree='tree -I "node_modules|lib|vendors"'
 alias es6='browserify -t [ babelify --global true --presets [ es2015 ] ]'
 
 # ls
@@ -107,3 +109,4 @@ export NVM_DIR="/Users/harttle/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 alias webpack="webpack --progress"
 
+alias rm 'mv \!* /tmp'
