@@ -25,9 +25,6 @@ split-window -h
 new-session -s mip-validator -c ~/src/mip-validator
 split-window -h
 
-new-session -s weather -c ~/src/weather
-split-window -h
-
 new-session -s pm25 -c ~/src/pm25-node
 split-window -h
 
@@ -46,7 +43,9 @@ new-session -s leetcode -c ~/src/leetcode
 split-window -h
 
 new-session -s dev -c ~/tmp
-split-window -h
 
 new-session -s tmp -c ~/tmp
+split-window -h
+
+new-session -s web-driverify -c ~/src/web-driverify
 split-window -h

@@ -49,11 +49,10 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/heroku/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
-export PATH="${PATH}:/opt/android-sdk/platform-tools"
-export PATH="./node_modules/.bin:${PATH}"
+export PATH="./node_modules/.bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/opt/android-sdk/platform-tools:/usr/local/texlive/2016/bin/x86_64-darwin/"
+export MANPATH="/usr/local/man:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export TMPDIR="/tmp"
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,14 +81,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# gnu coreutils
-PATH="/Users/harttle/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/texlive/2016/bin/x86_64-darwin/:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-TMPDIR="/tmp"
-
 # utils
-PATH="/usr/local/bin:$PATH"
 alias https='http-server -S -c-1 -C ~/.ssh/cert.pem -K ~/.ssh/key.pem -o'
 alias http='http-server -c-1 -o'
 alias tree='tree -I "node_modules|lib|vendors"'

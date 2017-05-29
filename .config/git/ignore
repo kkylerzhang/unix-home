@@ -14,11 +14,18 @@ Icon
 .Spotlight-V100
 .Trashes
 
-# Vim
+# tmp
 *.swp
 *.swo
+*.log
 
-# Frontend
+# Dependencies
 node_modules/
-build/
 bower_components/
+
+# Temporal
+build/
+tmp
+
+# development env
+*.dev.*
