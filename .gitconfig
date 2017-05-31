@@ -9,3 +9,12 @@
 	proxy = 
 [credential]
 	helper = osxkeychain
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+	trustExitCode = true
+[alias]
+	d = difftool
+[mergetool]
+	trustExitCode = true

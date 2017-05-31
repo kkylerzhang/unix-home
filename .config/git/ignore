@@ -24,7 +24,6 @@ node_modules/
 bower_components/
 
 # Temporal
-build/
 tmp
 
 # development env
