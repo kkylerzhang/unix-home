@@ -31,6 +31,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
 
 call vundle#end()            
 
@@ -173,6 +175,8 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
 " Misc
 set ru number sm hls wrap hidden
+" infocmp -1 xterm | fgrep -w kf20
+if &term == 'xterm-256color' | map <Esc>[19;2~ <s-F8> | endif
 
 " Clipboard
 set clipboard=unnamed
