@@ -42,8 +42,6 @@ send-keys -t xhb.1 gulp Enter
 new-session -s leetcode -c ~/src/leetcode
 split-window -h
 
-new-session -s dev -c ~/tmp
-
 new-session -s tmp -c ~/tmp
 split-window -h
 
