@@ -9,3 +9,8 @@ build/
 output/
 bower_components/
 docs/
+package-lock.json
+yarn.lock
+package-lock.json
+_book
+_site

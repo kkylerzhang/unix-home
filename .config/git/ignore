@@ -18,9 +18,11 @@ Icon
 *.swp
 *.swo
 *.log
+.vimrc
 
 # Dependencies
 node_modules/
+amd_modules/
 bower_components/
 
 # Temporal
@@ -28,3 +30,4 @@ tmp
 
 # development env
 *.dev.*
+secret

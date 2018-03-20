@@ -1,11 +1,13 @@
-# init
+rename-session tmp
+split-window -h
+
 new-session -s servers -c /tmp 'redis-server; read'
 split-window -h 'mongod; read'
 split-window -v "polipo socksParentProxy=localhost:1086; read"
 
 new-session -s blog -c ~/src/harttle.com
 split-window -h
-send-keys -t blog.1 ./bin/serve.sh Enter
+send-keys -t blog.1 npm start Enter
 select-pane -L
 
 new-session -s html -c ~/src/html
@@ -16,7 +18,7 @@ select-pane -L
 new-session -s superframe -c ~/src/superframe
 split-window -h
 
-new-session -s shopify-liquid -c ~/src/shopify-liquid
+new-session -s liquidjs -c ~/src/liquidjs
 split-window -h
 
 new-session -s mip -c ~/src/mip
@@ -31,18 +33,12 @@ split-window -h
 new-session -s mip-tools -c ~/src/mip-tools
 split-window -h
 
-new-session -s brick -c ~/src/brick.js
-split-window -h
-
 new-session -s xhb -c ~/src/xiehuibao
 split-window -h
 split-window -v
 send-keys -t xhb.1 gulp Enter
 
 new-session -s leetcode -c ~/src/leetcode
-split-window -h
-
-new-session -s tmp -c ~/tmp
 split-window -h
 
 new-session -s web-driverify -c ~/src/web-driverify

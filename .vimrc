@@ -11,6 +11,8 @@ Plugin 'gmarik/Vundle.vim'          " vim bundle manager: :PluginInstall
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'roxma/vim-tmux-clipboard'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Raimondi/delimitMate'
 Plugin 'vim-scripts/loremipsum'
@@ -53,10 +55,18 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_jump = 1
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_style_error_symbol = '!'
+let g:syntastic_style_warning_symbol = '?'
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
+let g:syntastic_quiet_messages = {
+    \ "level": "warnings"}
 let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+let g:syntastic_cpp_checkers = ['cpplint', 'gcc']
+let syntastic_aggregate_errors = 1
+let g:syntastic_cpp_cpplint_thres = 1
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_tex_lacheck_quiet_messages = {
     \ "regex": ["possible unwanted space", "Command terminated with space"] }
@@ -93,7 +103,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
     \ 'file':  '\v[\/]\.(git|hg|svn|exe|so|dll|snm|out|nav|log|vrb|toc|aux|swp|swo)$', 
-    \ 'dir':  'tmp$\|node_modules$\|lib$\|vendors$\|_site$\|build$\|dist$'}
+    \ 'dir':  'tmp$\|amd_modules\|node_modules$\|lib$\|vendors$\|_site$\|build$\|dist$'}
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-t>', '<2-LeftMouse>'],
     \ 'AcceptSelection("e")': ['<c-o>', '<cr>'],    
@@ -134,6 +144,9 @@ let delimitMate_matchpairs = "(:),[:],{:},『:』,「:」,《:》,（:）,【:�
 let g:SimpylFold_docstring_preview=1
 set foldmethod=indent foldlevel=99
 
+" color scheme
+colorscheme monokai
+
 " Editing related
 set ts=4 sw=4 smarttab et
 set backspace=indent,eol,start
@@ -161,9 +174,7 @@ nnoremap <c-h> :call DisableHighlight()<cr>
 function! DisableHighlight()
     set nohlsearch
 endfunc
-
-" color scheme
-colorscheme monokai
+hi Search ctermbg=yellow ctermfg=black
 
 " Encoding related
 set encoding=utf-8
@@ -186,7 +197,6 @@ noremap gl <c-w>l
 noremap gh <c-w>h
 noremap gj <c-w>j
 noremap gk <c-w>k
-cabbrev help tab help
 map K :Dash<cr>
 noremap <c-d> :sh<cr>
 

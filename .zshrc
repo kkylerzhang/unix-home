@@ -49,10 +49,9 @@ plugins=(git)
 
 # User configuration
 
-export PATH="./node_modules/.bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/opt/android-sdk/platform-tools:/usr/local/texlive/2016/bin/x86_64-darwin/"
+export PATH="./node_modules/.bin:/Users/harttle/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/opt/android-sdk/platform-tools:/usr/local/texlive/2016/bin/x86_64-darwin/:/usr/local/Cellar/node@6/6.9.2/bin"
 export MANPATH="/usr/local/man:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export TMPDIR="/tmp"
-
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,3 +101,4 @@ export NVM_DIR="/Users/harttle/.nvm"
 alias webpack="webpack --progress"
 
 alias rm 'mv \!* /tmp'
+# . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
