@@ -35,6 +35,7 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'posva/vim-vue'
 
 call vundle#end()            
 
@@ -52,14 +53,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_jump = 1
+let g:syntastic_auto_jump = 0
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_style_error_symbol = '!'
 let g:syntastic_style_warning_symbol = '?'
 let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
-let g:syntastic_quiet_messages = {
-    \ "level": "warnings"}
+" let g:syntastic_quiet_messages = {
+    " \ "level": "warnings"}
 let g:syntastic_less_lessc_quiet_messages = {
     \ "regex": ["properties must be inside selector blocks", "FileError:.*wasn't found"] }
 let g:syntastic_javascript_checkers = ['eslint']
@@ -130,9 +131,11 @@ let g:ycm_semantic_triggers = {
 " vim-autoformat config
 let g:formatdef_astyle = '"astyle --style=attach --pad-oper"'
 let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatdef_jsonpp = '"json_pp"'
 let g:formatters_cpp = ['astyle']
 let g:formatters_java = ['astyle']
 let g:formatters_javascript = ['eslint']
+let g:formatters_json = ['jsonpp']
 " js-beaultify for HTML/CSS/JS: ~/.jsbeautifyrc
 noremap <F3> :Autoformat<CR>:w<CR>
 
@@ -215,3 +218,42 @@ endfunc
 
 " comment
 map <C-_> <leader>c<Space>
+
+vmap <C-t> :call Translate()<CR>
+function! Translate() range
+  let val = VisualSelection()
+  let out = system("echo " . shellescape(val) . "| tr -s '\n' ' ' | trans -b :zh")
+  echo out
+  let @* = out
+endfunction
+
+function! VisualSelection()
+    if mode()=="v"
+        let [line_start, column_start] = getpos("v")[1:2]
+        let [line_end, column_end] = getpos(".")[1:2]
+    else
+        let [line_start, column_start] = getpos("'<")[1:2]
+        let [line_end, column_end] = getpos("'>")[1:2]
+    end
+    if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+        let [line_start, column_start, line_end, column_end] =
+        \   [line_end, column_end, line_start, column_start]
+    end
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+            return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - 1]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+"  force  a :redraw! on "events" that scramble the screen with
+"  syntax highlighting enabled.
+
+set ttyfast
+au FileWritePost * :redraw!
+au TermResponse * :redraw!
+au TextChanged * :redraw!
+au QuickFixCmdPre * :redraw!
+au QuickFixCmdPost * :redraw!

@@ -21,9 +21,9 @@ Icon
 .vimrc
 
 # Dependencies
-node_modules/
-amd_modules/
-bower_components/
+/node_modules/
+/amd_modules/
+/bower_components/
 
 # Temporal
 tmp
@@ -31,3 +31,4 @@ tmp
 # development env
 *.dev.*
 secret
+private

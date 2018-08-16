@@ -49,7 +49,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="./node_modules/.bin:/Users/harttle/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/opt/android-sdk/platform-tools:/usr/local/texlive/2016/bin/x86_64-darwin/:/usr/local/Cellar/node@6/6.9.2/bin"
+export PATH="./node_modules/.bin:/Users/harttle/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/opt/android-sdk/platform-tools:/usr/local/texlive/2016/bin/x86_64-darwin/:/usr/local/Cellar/node@6/6.9.2/bin:/Users/harttle/src/xtensa-esp32-elf/bin"
 export MANPATH="/usr/local/man:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export TMPDIR="/tmp"
 
@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # utils
 alias https='http-server -S -c-1 -C ~/.ssh/cert.pem -K ~/.ssh/key.pem -o'
 alias http='http-server -c-1 -o'
-alias tree='tree -I "node_modules|lib|vendors"'
+alias tree='tree -I "node_modules|lib|vendors|coverage|amd_modules"'
 alias es6='browserify -t [ babelify --global true --presets [ es2015 ] ]'
 
 # ls
@@ -95,10 +95,15 @@ alias vi='vim'
 
 export EDITOR="vim"
 export GIT_EDITOR="vim"
+export IDF_PATH="/Users/harttle/src/esp-idf"
+export IOT_SOLUTION_PATH="/Users/harttle/src/esp-iot-solution"
+export LANGUAGE=zh_cn
 
 export NVM_DIR="/Users/harttle/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 alias webpack="webpack --progress"
 
-alias rm 'mv \!* /tmp'
+alias get_esp32="export PATH=$PATH:$HOME/esp/xtensa-esp32-elf/bin"
+alias decodeURIComponent="perl -ple 'y/+/ /;s/%([\\da-f]{2})/pack H2,\$1/gie'"
+alias cpm='npm --registry=http://registry.npm.taobao.org'
 # . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
